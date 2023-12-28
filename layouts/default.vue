@@ -1,5 +1,5 @@
 <template>
-  <main class="container">
+  <main>
     <section class="grid grid-cols-12">
       <NuxtLoadingIndicator />
       <LayoutSidebar class="col-span-3 px-3 xl:col-span-2" />

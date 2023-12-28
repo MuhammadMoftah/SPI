@@ -1,5 +1,5 @@
 <template>
-  <main class="container">
+  <main>
     <div class="relative z-50 flex items-center justify-center gap-20">
       <img src="@/static/logo.png" class="h-12" alt="" />
       <LayoutHeader class="!w-auto" />
