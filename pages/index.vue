@@ -8,10 +8,14 @@
         alt="home-cover"
         loading="lazy"
       />
+      <!-- left-5 2xl:left-64 lg:left-20  -->
       <article
-        class="absolute z-10 grid max-w-lg gap-6 left-5 2xl:left-64 lg:left-20 top-56"
+        class="absolute left-0 right-0 z-10 grid w-full gap-6 mx-auto max-w-7xl top-56"
       >
-        <p class="text-slate-50" style="text-shadow: 1px 1px 1px black">
+        <p
+          class="max-w-lg text-slate-50"
+          style="text-shadow: 1px 1px 1px black"
+        >
           {{
             activeText == "government"
               ? $t("cover_text_government")

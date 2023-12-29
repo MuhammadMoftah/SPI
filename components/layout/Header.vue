@@ -1,7 +1,7 @@
 <template>
-  <section class="w-full h-fit">
+  <section class="flex justify-center w-full gap-3 h-fit">
     <aside
-      class="flex flex-wrap items-center h-12 py-1 mx-auto text-center rounded-b-xl px-7 gap-x-6 gap-y-2 bg-theme-mid-blue w-fit"
+      class="flex flex-wrap items-center h-12 py-1 text-center 3xl:h-14 rounded-b-xl px-7 gap-x-6 gap-y-2 bg-theme-mid-blue w-fit"
     >
       <NuxtLink :to="localePath('/')" class="link-style">
         <IconsHome />
@@ -24,14 +24,19 @@
       </NuxtLink>
 
       <NuxtLink :to="localePath('/project-management')" class="link-style">
-        <IconsStrategy />
+        <IconsSurvey />
         <span>{{ $t("project_management") }}</span>
       </NuxtLink>
 
-      <NuxtLink :to="localePath('/investor-survey')" class="link-style">
+      <NuxtLink :to="localePath('/specific-company')" class="link-style">
+        <IconsFinancial />
+        <span>{{ $t("specific_company") }}</span>
+      </NuxtLink>
+
+      <!-- <NuxtLink :to="localePath('/investor-survey')" class="link-style">
         <IconsSurvey />
         <span>{{ $t("investor_survey") }}</span>
-      </NuxtLink>
+      </NuxtLink> -->
 
       <NuxtLink
         :to="localePath('/testing')"
@@ -41,10 +46,24 @@
         <IconsSurvey />
         <span>{{ "Testing" }}</span>
       </NuxtLink>
+    </aside>
+
+    <aside
+      class="flex flex-wrap items-center h-12 py-1 text-center 3xl:h-14 rounded-b-xl px-7 gap-x-6 gap-y-2 bg-theme-mid-blue w-fit"
+    >
+      <button>
+        <IconsUser class="w-5 h-5 3xl:h-6 3xl:w-6" />
+      </button>
+      <button>
+        <IconsNotifications class="w-5 h-5 3xl:h-6 3xl:w-6" />
+      </button>
+      <button>
+        <IconsSearch class="w-5 h-5 3xl:h-6 3xl:w-6" />
+      </button>
 
       <NuxtLink
         :to="locale == 'ar' ? switchLocalePath('en') : switchLocalePath('ar')"
-        class="text-xl min-w-[40px] text-center"
+        class="text-xl text-center"
       >
         <span> {{ locale == "ar" ? "En" : "Ar" }}</span>
       </NuxtLink>
@@ -64,9 +83,9 @@ const switchLocalePath = useSwitchLocalePath();
 }
 
 .link-style {
-  @apply grid text-xs opacity-60;
+  @apply grid text-xs 3xl:text-sm opacity-60;
 }
 .link-style svg {
-  @apply w-5 h-5 mx-auto;
+  @apply w-5 h-5 3xl:h-6 3xl:w-6  mx-auto;
 }
 </style>

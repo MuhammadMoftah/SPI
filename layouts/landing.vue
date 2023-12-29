@@ -1,11 +1,11 @@
 <template>
   <main>
     <div class="relative z-50 flex items-center justify-center gap-20">
-      <img src="@/static/logo.png" class="h-12" alt="" />
+      <img src="@/static/logo.png" class="h-10 mt-2" alt="" />
       <LayoutHeader class="!w-auto" />
     </div>
 
-    <div class="-mt-12">
+    <div class="-mt-14">
       <slot />
     </div>
   </main>

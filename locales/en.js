@@ -96,6 +96,7 @@ export default {
   strategy_management: "Strategy Management",
   project_management: "Project Management",
   investor_survey: "Investor Survey",
+  specific_company: "Specific Company",
   select_sector: "Select sector",
   market_size: "Market Size",
   sector_economics: "Sector Economics",

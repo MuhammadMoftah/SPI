@@ -96,6 +96,7 @@ export default {
   strategy_management: "إدارة الاستراتيجية",
   project_management: "إدارة المشاريع",
   investor_survey: "استطلاع المستثمرين",
+  specific_company: "شركة محددة",
   select_sector: "اختر قطاعًا",
   market_size: "حجم السوق",
   sector_economics: "اقتصاد القطاع",
