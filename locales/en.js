@@ -1,5 +1,5 @@
 export default {
-  dir: "rtl",
+  dir: "ltr",
   login: "Login",
   register: "Register now",
   logout: "Log out",

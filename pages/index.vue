@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="relative w-full bg-theme-indigo z-0 h-[637px]">
+    <section class="relative w-full bg-theme-indigo z-0 h-[637px]" dir="ltr">
       <NuxtImg
         :placeholder="[1536, 637]"
         src="/imgs/home-cover.png"
@@ -12,41 +12,43 @@
       <article
         class="absolute left-0 right-0 z-10 grid w-full gap-6 mx-auto max-w-7xl top-56"
       >
-        <p
-          class="max-w-lg text-slate-50"
-          style="text-shadow: 1px 1px 1px black"
-        >
-          {{
-            activeText == "government"
-              ? $t("cover_text_government")
-              : $t("cover_text_private")
-          }}
-        </p>
-        <aside class="flex gap-6">
-          <button
-            @click="activeText = 'government'"
-            class="w-40 font-normal capitalize rounded-full h-9 btn hover:bg-theme-indigo hover:text-white"
-            :class="
-              activeText == 'government'
-                ? 'bg-theme-indigo text-white '
-                : 'bg-theme-mid-blue text-theme-indigo'
-            "
+        <div class="grid gap-4 w-fit" :dir="$t('dir')">
+          <p
+            class="max-w-lg text-slate-50"
+            style="text-shadow: 1px 1px 1px black"
           >
-            {{ $t("government") }}
-          </button>
+            {{
+              activeText == "government"
+                ? $t("cover_text_government")
+                : $t("cover_text_private")
+            }}
+          </p>
+          <aside class="flex gap-6">
+            <button
+              @click="activeText = 'government'"
+              class="w-40 font-normal capitalize rounded-full h-9 btn hover:bg-theme-indigo hover:text-white"
+              :class="
+                activeText == 'government'
+                  ? 'bg-theme-indigo text-white '
+                  : 'bg-theme-mid-blue text-theme-indigo'
+              "
+            >
+              {{ $t("government") }}
+            </button>
 
-          <button
-            @click="activeText = 'private'"
-            class="w-40 font-normal capitalize rounded-full h-9 btn hover:bg-theme-indigo hover:text-white"
-            :class="
-              activeText == 'private'
-                ? 'bg-theme-indigo text-white '
-                : 'bg-theme-mid-blue text-theme-indigo'
-            "
-          >
-            {{ $t("private") }}
-          </button>
-        </aside>
+            <button
+              @click="activeText = 'private'"
+              class="w-40 font-normal capitalize rounded-full h-9 btn hover:bg-theme-indigo hover:text-white"
+              :class="
+                activeText == 'private'
+                  ? 'bg-theme-indigo text-white '
+                  : 'bg-theme-mid-blue text-theme-indigo'
+              "
+            >
+              {{ $t("private") }}
+            </button>
+          </aside>
+        </div>
       </article>
     </section>
 
