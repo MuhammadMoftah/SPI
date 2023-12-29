@@ -111,8 +111,10 @@ export default {
   global_indices: "Global Indices",
   capital_market: "Capital Market",
   cost_of_doing_business: "Cost of doing business",
-  home_cover_text:
+  cover_text_government:
     " The SPI functions as a comprehensive platform for business analysis, forecasting, strategy management, and corporate performance management, designed as a SPaaS (strategic planning as a system). It assists government entities in developing policies, attracting investments, and proactively engaging with companies across various sectors. This is achieved through a data-driven approach that considers multiple factors influencing economic activities.",
+  cover_text_private:
+    "The SPI stands as an advanced SPaaS (strategic planning as a system), specialized in business analysis, forecasting, strategy management, and corporate performance management. It empowers executives at the private sector by providing data-driven decision-making capabilities, backed by a vast and meticulously analyzed dataset. This dataset encompasses multiple factors that influence economic activities, thereby enabling informed and strategic business actions.",
   private: "Private",
   government: "government",
   footer_p1: "Copyright Next & Associates All Rights Reserved",
