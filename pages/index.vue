@@ -76,5 +76,5 @@
 definePageMeta({
   layout: "landing",
 });
-const activeText = ref("private");
+const activeText = ref("government");
 </script>
