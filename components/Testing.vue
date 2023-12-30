@@ -20,7 +20,7 @@ const id = ref(1);
 
 const app = useNuxtApp();
 const submit = () => {
-  useFetch("/api/users", {
+  useFetch("/sectors/1/chart?slug=market_size_1", {
     headers: {
       headEXXX: "HEAd4645",
     },

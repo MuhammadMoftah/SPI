@@ -8,7 +8,7 @@
       activeTab="tab 2"
       @tabChosen="(e) => console.log(e)"
     />
-    <!-- <Testing /> -->
+    <Testing />
   </main>
 </template>
 
