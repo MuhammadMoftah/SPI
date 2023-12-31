@@ -7,13 +7,10 @@
     <section class="grid gap-4 px-1 mt-2">
       <label for="" class="grid gap-1">
         <p class="text-sm text-slate-50">
-          {{ $t("select_sector") }} {{ $t("home") }}
+          {{ $t("select_sector") }}
         </p>
-        <select name="" class="input" id="">
-          <option value="">Option 1</option>
-          <option value="">Option 2</option>
-          <option value="">Option 3</option>
-          <option value="">Option 4</option>
+        <select name="main sector" class="input" id="">
+          <option :key="el.id" :value="el.id" v-for="el in sectors">{{ el.label }}</option>
         </select>
       </label>
 
@@ -28,17 +25,13 @@
       </label>
     </section>
 
-    <section
-      class="flex flex-col mt-5 overflow-auto divide-y h-[63vh] divide-white/20 small_scroll"
-    >
-      <button
-        v-for="el in sideFilters"
-        :title="el.label"
-        class="flex items-center font-light gap-2 text-sm hover:bg-white/10 duration-300 capitalize ms-3 hover:ps-2 min-h-[37px] text-slate-50"
-      >
+    <section class="flex flex-col mt-5 overflow-auto divide-y h-[63vh] divide-white/20 small_scroll">
+      <button v-for="el in sideFilters" :title="el.label"
+        class="flex items-center font-light gap-2 text-sm hover:bg-white/10 duration-300 capitalize ms-3 hover:ps-2 min-h-[37px] text-slate-50">
         <component class="w-4 h-4" :is="el.icon" />
         <span class="w-full truncate text-start"> {{ el.label }}</span>
       </button>
+
     </section>
   </aside>
 </template>
@@ -46,6 +39,9 @@
 <script setup>
 //Icons
 import { IconsPieChart, IconsBarChart, IconsMultiUsers } from "#components";
+
+const sectors = useSidebarSectors()
+
 
 const app = useNuxtApp();
 const t = app.$i18n.t;

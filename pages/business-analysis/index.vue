@@ -1,16 +1,11 @@
 <template>
   <main>
     <ThemeTitle :title="$t('sector_economics')" />
-    <ThemeTabs
-      class="my-6"
-      :tabs="[
-        $t('market_size'),
-        $t('turnover_cost_profitability'),
-        $t('companies_employees_salaries'),
-      ]"
-      :activeTab="$t('market_size')"
-      @tabChosen="(e) => console.log(e)"
-    />
+    <ThemeTabs class="my-6" :tabs="[
+      $t('market_size'),
+      $t('turnover_cost_profitability'),
+      $t('companies_employees_salaries'),
+    ]" :activeTab="$t('market_size')" @tabChosen="(e) => console.log(e)" />
 
     <section class="">
       <p class="mb-12 text-sm text-theme-indigo">
@@ -18,9 +13,12 @@
       </p>
     </section>
 
-    <section class="grid grid-cols-2">
+    <section class="grid grid-cols-1 gap-40 xl:grid-cols-2">
       <div>
-        <MyChart class="w-full" />
+        <ChartsBar />
+      </div>
+      <div>
+        <ChartsDoughnut />
       </div>
     </section>
   </main>

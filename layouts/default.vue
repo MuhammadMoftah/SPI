@@ -3,7 +3,7 @@
     <section class="grid grid-cols-12">
       <NuxtLoadingIndicator />
       <LayoutSidebar class="col-span-3 px-3 xl:col-span-2" />
-      <div class="relative w-full col-span-9 px-7 xl:col-span-10 bg-slate-200">
+      <div class="relative w-full col-span-9 px-7 xl:col-span-10 ">
         <LayoutHeader class="mb-7" />
         <slot />
       </div>
