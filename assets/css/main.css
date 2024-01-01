@@ -8,6 +8,10 @@
 * {
   @apply duration-200;
 }
+svg{
+  fill: currentColor;
+
+}
 /* page transition */
 .page-enter-active,
 .page-leave-active {

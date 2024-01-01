@@ -38,7 +38,7 @@
 
 <script setup>
 //Icons
-import { IconsPieChart, IconsBarChart, IconsMultiUsers } from "#components";
+import { IconsPieChart, IconsBarChart, IconsMultiUsers, IconsDollar, IconsStockTicker, IconsListCenter, IconsAnalysis2, IconsGlobal, IconsTrade, IconsWeather, IconsMapMarker, IconsCompilance, IconsMicrochip, IconsGovernmentLine } from "#components";
 
 const sectors = useSidebarSectors()
 
@@ -66,57 +66,57 @@ const sideFilters = computed(() => {
     },
     {
       label: t("sector_technology"),
-      icon: IconsMultiUsers,
+      icon: IconsMicrochip,
       value: "",
     },
     {
       label: t("sector_regulations"),
-      icon: IconsMultiUsers,
+      icon: IconsCompilance,
       value: "",
     },
     {
       label: t("government_direction"),
-      icon: IconsMultiUsers,
+      icon: IconsGovernmentLine,
       value: "",
     },
     {
       label: t("special_economic_zones"),
-      icon: IconsMultiUsers,
+      icon: IconsMapMarker,
       value: "",
     },
     {
       label: t("climate_weather"),
-      icon: IconsMultiUsers,
+      icon: IconsWeather,
       value: "",
     },
     {
       label: t("political_analysis"),
-      icon: IconsMultiUsers,
+      icon: IconsTrade,
       value: "",
     },
     {
       label: t("global_foreign_investment_trend"),
-      icon: IconsMultiUsers,
+      icon: IconsGlobal,
       value: "",
     },
     {
       label: t("financial_analysis_and_benchmarking"),
-      icon: IconsMultiUsers,
+      icon: IconsAnalysis2,
       value: "",
     },
     {
       label: t("global_indices"),
-      icon: IconsMultiUsers,
+      icon: IconsListCenter,
       value: "",
     },
     {
       label: t("capital_market"),
-      icon: IconsMultiUsers,
+      icon: IconsStockTicker,
       value: "",
     },
     {
       label: t("cost_of_doing_business"),
-      icon: IconsMultiUsers,
+      icon: IconsDollar,
       value: "",
     },
   ];
