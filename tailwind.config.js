@@ -9,6 +9,7 @@ export default {
           "mid-blue": "#83D1E7",
           "celestial-blue": "#5B9DCD",
           aqua: "#83D1E7",
+          aqua2: "#C0DBF6",
           dark: "#070707",
         },
       },

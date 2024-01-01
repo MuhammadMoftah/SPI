@@ -125,4 +125,6 @@ export default {
     "Companies, employees, Salaries, and competitive landscape",
   marcket_size_p:
     "Retail market is poised to note healthy growth over 2022E-26F, driven by multiple factors such as favorable demographics and increasing household spending and tourism",
+  marcket_size_idea:
+    "Saudi Arabia notes a thriving retail sector (expected to grow at a CAGR of 7.1% during 2021A-26F), mainly driven by factors such as likely increase in presence of e-commerce platforms, growth in consumer/ household spending on essentials, strong B2B demand potential, growth in tourism, and government initiatives/ programs. In response to the surging demand, few leading market players are expanding presence. For instance, Abdullah Al Othaim Markets (retailer) opened 9 branches in the Kingdom in Q1’2022 and Geekay (entertainment retailer) and BFL (multi brand retailer) entered the market in Jun 2022.",
 };

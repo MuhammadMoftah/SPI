@@ -1,85 +1,9 @@
 <template>
-  <section class="grid gap-6 ">
-    <Bar ref="BarChart" :options="chartOptions" :data="chartData" />
+  <section class="grid">
+    <Bar ref="BarChart" :class="chartClass" :options="chartOptions" :data="chartData" />
     <ChartsFooter :text="'Market size (SAR bn), 2019A-26F'" />
   </section>
 </template>
-
-<!-- <script>
-import { Bar } from "vue-chartjs";
-import {
-  Chart as ChartJS,
-  Title,
-  Tooltip,
-  Legend,
-  BarElement,
-  CategoryScale,
-  LinearScale,
-} from "chart.js";
-
-ChartJS.register(
-  Title,
-  Tooltip,
-  Legend,
-  BarElement,
-  CategoryScale,
-  LinearScale
-);
-
-export default {
-  name: "BarChart",
-  components: { Bar },
-  data() {
-    return {
-      chartData: {
-        labels: ["2019A", "2020A", "2021A", "2022A", "2024A", "2025A", "2026A"],
-        datasets: [
-          {
-            label: "Market Size",
-            data: [374.7, 372, 347.2, 376.5, 406.7, 435.3, 461.8, 489.6],
-            borderWidth: 0,
-          },
-        ],
-      },
-      chartOptions: {
-        responsive: true,
-        backgroundColor: "#273D6C",
-        color: "black",
-        plugins: {
-          legend: {
-            display: false // Hides the legend
-          }
-        },
-        scales: {
-          y: {
-            beginAtZero: true, // default true,
-            display: false,
-            grid: {
-              display: false
-            },
-
-
-          },
-          x: {
-            // display: false,
-            grid: {
-              display: false
-            },
-            ticks: {
-              font: {
-                weight: 'bold', // Make the Y-axis font bold
-                color: 'red',
-              },
-            },
-          }
-
-        },
-      },
-    };
-  },
-};
-</script> -->
-
 
 <script setup>
 import { Bar } from "vue-chartjs";
@@ -97,7 +21,7 @@ import {
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, ChartDataLabels);
 
-
+defineProps(['chartClass'])
 
 const chartData = {
   labels: ["2019A", "2020A", "2021A", "2022A", "2024A", "2025A", "2026A"],
@@ -117,18 +41,15 @@ const chartOptions = {
     legend: {
       display: false // Hides the legend
     },
-
     datalabels: {
       align: 'center',
       anchor: 'top',
       color: 'white',
-      indexLabels: {
-        display: false, // Hide default index labels
-      },
-      font: {
-        weight: 'bold',
+      textAlign: useI18n.locale == 'ar' ? 'right' : 'left',
 
-        size: 20,
+      font: {
+        weight: '600',
+        size: 15,
       }
     }
   },

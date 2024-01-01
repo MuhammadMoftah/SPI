@@ -1,8 +1,8 @@
 <template>
   <section class="flex justify-center w-full gap-3 h-fit">
     <aside
-      class="flex flex-wrap items-center h-12 py-1 text-center 3xl:h-14 rounded-b-xl px-7 gap-x-6 gap-y-2 bg-theme-mid-blue w-fit"
-    >
+      class="flex flex-wrap items-center h-12 py-1 text-center 3xl:h-14 rounded-b-xl px-7 gap-x-6 gap-y-2 bg-theme-mid-blue w-fit">
+
       <NuxtLink :to="localePath('/')" class="link-style">
         <IconsHome />
         <span>{{ $t("home") }}</span>
@@ -38,19 +38,14 @@
         <span>{{ $t("investor_survey") }}</span>
       </NuxtLink> -->
 
-      <NuxtLink
-        :to="localePath('/testing')"
-        class="link-style"
-        v-if="useRuntimeConfig().public.envMode == 'dev'"
-      >
+      <NuxtLink :to="localePath('/testing')" class="link-style" v-if="useRuntimeConfig().public.envMode == 'dev'">
         <IconsSurvey />
         <span>{{ "Testing" }}</span>
       </NuxtLink>
     </aside>
 
     <aside
-      class="flex flex-wrap items-center h-12 py-1 text-center 3xl:h-14 rounded-b-xl px-7 gap-x-6 gap-y-2 bg-theme-mid-blue w-fit"
-    >
+      class="flex flex-wrap items-center h-12 py-1 text-center 3xl:h-14 rounded-b-xl px-7 gap-x-6 gap-y-2 bg-theme-mid-blue w-fit">
       <button>
         <IconsUser class="w-5 h-5 3xl:h-6 3xl:w-6" />
       </button>
@@ -61,10 +56,7 @@
         <IconsSearch class="w-5 h-5 3xl:h-6 3xl:w-6" />
       </button>
 
-      <NuxtLink
-        :to="locale == 'ar' ? switchLocalePath('en') : switchLocalePath('ar')"
-        class="text-xl text-center"
-      >
+      <NuxtLink :to="locale == 'ar' ? switchLocalePath('en') : switchLocalePath('ar')" class="text-xl text-center">
         <span> {{ locale == "ar" ? "En" : "Ar" }}</span>
       </NuxtLink>
     </aside>
@@ -85,7 +77,8 @@ const switchLocalePath = useSwitchLocalePath();
 .link-style {
   @apply grid text-xs 3xl:text-sm opacity-60;
 }
+
 .link-style svg {
-  @apply w-5 h-5 3xl:h-6 3xl:w-6  mx-auto;
+  @apply w-5 h-5 3xl:h-6 3xl:w-6 mx-auto;
 }
 </style>

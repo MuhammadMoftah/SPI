@@ -1,86 +1,55 @@
 <template>
-  <section class="grid gap-6 ">
-    <Bar ref="BarChart" :options="chartOptions" :data="chartData" />
+  <section class="grid">
+    <Doughnut ref="DoughnutChart" :class="chartClass" :options="chartOptions" :data="chartData" />
     <ChartsFooter :text="'Market size (SAR bn), 2019A-26F'" />
   </section>
 </template>
 
 
 <script setup>
-import { Bar } from "vue-chartjs";
+import { Doughnut } from "vue-chartjs";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+// Import necessary elements, controllers, and charts
+import { Chart, ArcElement, Tooltip, Legend, DoughnutController, } from 'chart.js';
+// Register the components
+Chart.register(ArcElement, Tooltip, Legend, DoughnutController, ChartDataLabels);
 
-import {
-  Chart as ChartJS,
-  Title,
-  Tooltip,
-  Legend,
-  BarElement,
-  CategoryScale,
-  LinearScale,
-} from "chart.js";
-
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, ChartDataLabels);
+defineProps(['chartClass'])
 
 
 
-const chartData = {
-  labels: ["2019A", "2020A", "2021A", "2022A", "2024A", "2025A", "2026A"],
+// Chart data
+const chartData = ref({
+  labels: ['Non-store', 'Store-based'],
   datasets: [
     {
-      label: "Market Size",
-      data: [374.7, 372, 347.2, 376.5, 406.7, 435.3, 461.8, 489.6],
+      data: [6.1, 93.9],
+      backgroundColor: ['#457BEE', '#273D6C'],
       borderWidth: 0,
-    },
-  ],
-}
-const chartOptions = {
+      spacing: 0
+    }
+  ]
+});
+
+// Chart options
+const chartOptions = ref({
+  cutout: '65%',
   responsive: true,
-  backgroundColor: "#273D6C",
-  color: "black",
   plugins: {
     legend: {
-      display: false // Hides the legend
-    },
-
-    datalabels: {
+      display: false
+    }, datalabels: {
       align: 'center',
       anchor: 'top',
       color: 'white',
-      indexLabels: {
-        display: false, // Hide default index labels
-      },
+      textAlign: useI18n.locale == 'ar' ? 'right' : 'left',
+
       font: {
         weight: 'bold',
-
-        size: 20,
+        size: 16,
       }
     }
-  },
-  scales: {
-    y: {
-      beginAtZero: true, // default true,
-      display: false,
-      grid: {
-        display: false
-      },
-    },
-    x: {
-      // display: false,
-      grid: {
-        display: false
-      },
-      ticks: {
-        color: 'black',
-        font: {
-          weight: 'bold', // Make the Y-axis font bold
-          size: 15
-        },
-      },
-    }
-  },
-}
 
-
-
+  }
+});
 </script>

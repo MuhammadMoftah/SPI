@@ -13,6 +13,9 @@
 
 <script setup>
 const i18n = useI18n();
+// const nuxtApp = useNuxtApp()
+// console.log("nuxtApp ", nuxtApp);
+
 // const config = useRuntimeConfig();
 // console.log("config ", config);
 
