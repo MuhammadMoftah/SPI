@@ -1,13 +1,12 @@
 <template>
   <main>
+    <SectionsMarketSizeContainer v-if="activeSideTab.id == 1" />
 
-
+    <SectionsSectorEcon v-if="activeSideTab.id == 2" />
   </main>
 </template>
-
-<script>
-
-
-
+<script setup>
+const activeSideTab = computed(() => {
+  return useGlobalStore().activeSideTab;
+});
 </script>
-<style></style>

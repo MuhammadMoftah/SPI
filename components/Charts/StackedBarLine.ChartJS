@@ -6,22 +6,17 @@
       :options="chartOptions"
       :data="chartData"
     />
+
     <ChartsFooter :text="footerText" />
   </section>
 </template>
 
 <script setup>
-const { market_size_1 } = inject("charts");
-
-// console.log(
-//   "data ",
-//   market_size_1.value.map((el) => el.label)
-// );
-import { Bar } from "vue-chartjs";
+import { Bar, Line } from "vue-chartjs";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 
 import {
-  Chart as ChartJS,
+  Chart,
   Title,
   Tooltip,
   Legend,
@@ -30,7 +25,7 @@ import {
   LinearScale,
 } from "chart.js";
 
-ChartJS.register(
+Chart.register(
   Title,
   Tooltip,
   Legend,
@@ -43,15 +38,27 @@ ChartJS.register(
 defineProps(["footerText", "chartClass"]);
 
 const chartData = {
-  // labels: ["2019A", "2020A", "2021A", "2022A", "2024A", "2025A", "2026A"],
-  labels: ["2019A", "2020A", "2021A", "2022A", "2024A", "2025A", "2026A"],
+  labels: ["2019A", "2020A", "2021A", "2022A", "2024A"],
   datasets: [
     {
-      // label: "Market Size",
-      data: [374.7, 372, 347.2, 376.5, 406.7, 435.3, 461.8, 489.6],
+      // type: "line",
+      // label: "Line Dataset",
+      // borderColor: "rgba(75, 192, 192, 1)",
+      // borderWidth: 2,
+      // fill: false,
+      data: [65, 59, 80, 81, 56],
+    },
+    {
+      type: "bar",
+      label: "Bar Dataset",
+      backgroundColor: "rgba(255, 99, 132, 0.2)",
+      borderColor: "rgba(255, 99, 132, 1)",
+      borderWidth: 1,
+      data: [30, 40, 50, 60, 70],
     },
   ],
 };
+
 const chartOptions = {
   responsive: true,
   backgroundColor: "#273D6C",
@@ -74,6 +81,7 @@ const chartOptions = {
   },
   scales: {
     y: {
+      stacked: true,
       beginAtZero: true, // default true,
       display: false,
       grid: {
@@ -82,6 +90,7 @@ const chartOptions = {
     },
     x: {
       // display: false,
+      stacked: true,
       grid: {
         display: false,
       },
@@ -93,6 +102,23 @@ const chartOptions = {
         },
       },
     },
+    yAxes: [
+      {
+        id: "y-axis-1", // First y-axis
+        type: "linear",
+        position: "left",
+      },
+      {
+        id: "y-axis-2", // Second y-axis
+        type: "linear",
+        position: "right",
+      },
+    ],
   },
 };
+
+onMounted(() => {
+  // console.log("ref", ctx.value);
+  // ctx.value.innerHTML = "test";
+});
 </script>

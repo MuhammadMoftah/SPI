@@ -125,6 +125,14 @@ export default {
     "Companies, employees, Salaries, and competitive landscape",
   marcket_size_p:
     "Retail market is poised to note healthy growth over 2022E-26F, driven by multiple factors such as favorable demographics and increasing household spending and tourism",
+  turn_over_p:
+    "The Kingdom noted the fourth largest turnover in the Middle East and Africa in 2021A and the turnover is likely to note further growth on the back of a strong B2B demand",
+  companies_p:
+    "Given the thriving market demand, players are increasingly setting shops, evident in the increase (~7.5K) in number of companies over 2017A-21A",
   marcket_size_idea:
     "Saudi Arabia notes a thriving retail sector (expected to grow at a CAGR of 7.1% during 2021A-26F), mainly driven by factors such as likely increase in presence of e-commerce platforms, growth in consumer/ household spending on essentials, strong B2B demand potential, growth in tourism, and government initiatives/ programs. In response to the surging demand, few leading market players are expanding presence. For instance, Abdullah Al Othaim Markets (retailer) opened 9 branches in the Kingdom in Q1’2022 and Geekay (entertainment retailer) and BFL (multi brand retailer) entered the market in Jun 2022.",
+  turnover_idea:
+    "In terms of retail turnover, Saudi Arabia stood as the 4th largest country in Middle East and African market in 2021. Post recording growth over 2017-19, turnover noted pandemic-led disruptions in 2020, followed by a recovery in 2021. Going forward, strong B2B demand is likely to contribute to growth in turnover (~5% expected over 2021A-26F)(f)",
+  companies_idea:
+    "In response to the surging demand, the total number of companies noted an increase over 2017-21 In terms of competitive landscape, the sector notes high fragmentation, with the top five players accounting for only ~12% share in 2021 giving the message for investors that there is no monopoly or monopolistic competition which helps at attracting foreign investors.",
 };

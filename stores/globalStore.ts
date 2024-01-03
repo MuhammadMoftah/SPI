@@ -1,9 +1,9 @@
-export const useGlobalStore = defineStore("myStore", {
+export const useGlobalStore = defineStore("useGlobalStore", {
   state: () => {
     return {
       variable1: "value1",
-      variable2: "value2",
       activeSideTab: { id: 1 },
+      activeSector: localStorage.getItem("activeSector") || 1,
     };
   },
 
@@ -14,6 +14,10 @@ export const useGlobalStore = defineStore("myStore", {
   actions: {
     action1() {
       // logic for action1
+    },
+    setSector(sector: any) {
+      this.activeSector = sector;
+      localStorage.setItem("activeSector", sector);
     },
   },
 });

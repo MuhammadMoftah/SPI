@@ -9,12 +9,21 @@
         <p class="text-sm text-slate-50">
           {{ $t("select_sector") }}
         </p>
-        <select name="main sector" :value="1" class="input" id="">
-          <option :key="el.id" :value="el.id" v-for="el in sectors">{{ el.label }}</option>
+
+        <select
+          name="main sector"
+          @change="
+            useGlobalStore().setSector($event.target.value),
+              console.log($event.target.value)
+          "
+          :value="useGlobalStore().activeSector"
+          class="input"
+        >
+          <option :key="el.id" :value="el.id" v-for="el in sectors">
+            {{ el.label }}
+          </option>
         </select>
       </label>
-
-
 
       <label for="" class="grid gap-1">
         <p class="text-sm text-slate-50">{{ $t("select_sector") }}</p>
@@ -27,34 +36,49 @@
       </label>
     </section>
 
-
-    <section class="flex flex-col h-[calc(100vh_-_260px)] mt-5 overflow-auto  divide-y divide-white/20 small_scroll">
-
-
-      <button @click="useGlobalStore().activeSideTab = el" v-for="el in sideFilters" :title="el.label"
+    <section
+      class="flex flex-col h-[calc(100vh_-_260px)] mt-5 overflow-auto divide-y divide-white/20 small_scroll"
+    >
+      <button
+        @click="useGlobalStore().activeSideTab = el"
+        v-for="el in sideFilters"
+        :title="el.label"
         class="flex items-center font-light gap-2 text-sm hover:bg-white/10 duration-300 capitalize ms-3 hover:ps-2 min-h-[37px] text-slate-50"
-        :class="useGlobalStore().activeSideTab.id == el.id ? 'ps-2 bg-white/10' : ''">
+        :class="
+          useGlobalStore().activeSideTab.id == el.id ? 'ps-2 bg-white/10' : ''
+        "
+      >
         <component class="w-4 h-4" :is="el.icon" />
         <span class="w-full truncate text-start"> {{ el.label }}</span>
       </button>
-
     </section>
   </aside>
 </template>
 
 <script setup>
 //Icons
-import { IconsPieChart, IconsBarChart, IconsMultiUsers, IconsDollar, IconsStockTicker, IconsListCenter, IconsAnalysis2, IconsGlobal, IconsTrade, IconsWeather, IconsMapMarker, IconsCompilance, IconsMicrochip, IconsGovernmentLine } from "#components";
+import {
+  IconsPieChart,
+  IconsBarChart,
+  IconsMultiUsers,
+  IconsDollar,
+  IconsStockTicker,
+  IconsListCenter,
+  IconsAnalysis2,
+  IconsGlobal,
+  IconsTrade,
+  IconsWeather,
+  IconsMapMarker,
+  IconsCompilance,
+  IconsMicrochip,
+  IconsGovernmentLine,
+} from "#components";
 
-const sectors = useSidebarSectors()
-
-
-
+const sectors = useSidebarSectors();
 
 const app = useNuxtApp();
 const t = app.$i18n.t;
 
-// console.log("app ", $router);
 const sideFilters = computed(() => {
   return [
     {
@@ -140,7 +164,7 @@ const sideFilters = computed(() => {
       label: t("cost_of_doing_business"),
       icon: IconsDollar,
       value: "",
-    }
-  ]
+    },
+  ];
 });
 </script>

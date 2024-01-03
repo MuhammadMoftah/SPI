@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  ssr: true,
   devtools: {
     enabled: true,
 
@@ -48,5 +49,10 @@ export default defineNuxtConfig({
 
   app: {
     pageTransition: { name: "page", mode: "out-in" },
+  },
+
+  routeRules: {
+    "/business-analysis": { ssr: false },
+    "/ar/business-analysis": { ssr: false },
   },
 });
