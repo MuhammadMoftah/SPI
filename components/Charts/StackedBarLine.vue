@@ -23,6 +23,8 @@ import {
   BarElement,
   CategoryScale,
   LinearScale,
+  PointElement,
+  LineElement,
 } from "chart.js";
 
 Chart.register(
@@ -32,7 +34,9 @@ Chart.register(
   BarElement,
   CategoryScale,
   LinearScale,
-  ChartDataLabels
+  ChartDataLabels,
+  PointElement,
+  LineElement
 );
 
 defineProps(["footerText", "chartClass"]);
@@ -47,6 +51,7 @@ const chartData = {
       // borderWidth: 2,
       fill: false,
       data: [0, 10, 5, 2, 20, 30, 45],
+      yAxisID: "y1",
     },
     {
       type: "bar",
@@ -55,6 +60,7 @@ const chartData = {
       borderColor: "rgba(255, 99, 132, 1)",
       borderWidth: 1,
       data: [30, 40, 50, 60, 70],
+      yAxisID: "y",
     },
   ],
 };
@@ -81,11 +87,18 @@ const chartOptions = {
   },
   scales: {
     y: {
-      stacked: true,
-      beginAtZero: true, // default true,
-      display: false,
+      type: "linear",
+      display: true,
+      position: "left",
+      beginAtZero: true,
+    },
+    y1: {
+      type: "linear",
+      display: true,
+      position: "right",
+      // grid line settings
       grid: {
-        display: false,
+        drawOnChartArea: false, // only want the grid lines for one axis to show up
       },
     },
     x: {
