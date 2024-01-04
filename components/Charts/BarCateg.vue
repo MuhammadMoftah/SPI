@@ -43,52 +43,77 @@ ChartJS.register(
 defineProps(["footerText", "chartClass"]);
 
 const chartData = {
-  // labels: ["2019A", "2020A", "2021A", "2022A", "2024A", "2025A", "2026A"],
-  labels: ["2019A", "2020A", "2021A", "2022A", "2024A", "2025A", "2026A"],
+  labels: ["2017A", "2018A", "2019A", "2020A", "2024A"],
   datasets: [
     {
-      // label: "Market Size",
-      data: [374.7, 372, 347.2, 376.5, 406.7, 435.3, 461.8, 489.6],
+      label: "BSB",
+      backgroundColor: "#273D6C ", // Set color for category 1
+      data: [76, 72, 68, 60, 66], // Replace with your data for category 1
+    },
+    {
+      label: "Labour",
+      backgroundColor: "#4266B1", // Set color for category 2
+      data: [100, 100, 100, 100, 100], // Replace with your data for category 2
+    },
+    {
+      label: "Taxes",
+      backgroundColor: "#769FF5", // Set color for category 3
+      data: [120, 130, 125, 135, 115], // Replace with your data for category 3
     },
   ],
 };
+
 const chartOptions = {
   responsive: true,
-  backgroundColor: "#273D6C",
   color: "black",
   plugins: {
     legend: {
-      display: false, // Hides the legend
+      display: true,
+      // position: "bottom",
+      labels: {
+        boxWidth: 10,
+        boxHeight: 10,
+        padding: 7,
+        font: {
+          size: 12,
+          weight: "500",
+        },
+        usePointStyle: true,
+      },
     },
     datalabels: {
-      align: "center",
-      anchor: "top",
+      formatter: function (value, context) {
+        // Add "%" symbol after each data number
+        return value + "%";
+      },
+      align: "end",
+      anchor: "center",
       color: "white",
       textAlign: useI18n.locale == "ar" ? "right" : "left",
       font: {
         weight: "500",
-        size: 15,
+        size: 13,
       },
     },
   },
   scales: {
     y: {
-      beginAtZero: true, // default true,
+      type: "linear",
+      suggestedMax: 61,
       display: false,
-      grid: {
-        display: false,
-      },
+      position: "left",
+      beginAtZero: true,
     },
     x: {
-      // display: false,
+      stacked: true,
       grid: {
         display: false,
       },
       ticks: {
         color: "black",
         font: {
-          weight: "bold", // Make the Y-axis font bold
-          size: 15,
+          weight: "bold",
+          size: 14,
         },
       },
     },

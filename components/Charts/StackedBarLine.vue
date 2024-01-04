@@ -42,67 +42,97 @@ Chart.register(
 defineProps(["footerText", "chartClass"]);
 
 const chartData = {
-  labels: ["2019A", "2020A", "2021A", "2022A", "2024A"],
+  labels: ["2017A", "2018A", "2019A", "2020A", "2024A"],
   datasets: [
     {
       type: "line",
-      // label: "Line Dataset",
-      // borderColor: "rgba(75, 192, 192, 1)",
-      // borderWidth: 2,
+      label: "Profit margin",
+      borderWidth: 1,
+      pointRadius: 5, // Adjust the point radius as needed
+      pointStyle: "rect",
+      borderColor: "#6B4747", // Set line color to green
+      backgroundColor: "#6B4747", // Transparent background
       fill: false,
-      data: [0, 10, 5, 2, 20, 30, 45],
+      data: [35, 31, 30.2, 35.2, 32.7],
       yAxisID: "y1",
+      order: 2,
+
+      datalabels: {
+        color: "#6B4747",
+        anchor: "end",
+        align: "end",
+        offset: -2,
+        font: {
+          weight: "bold",
+          size: 13,
+        },
+      },
     },
     {
       type: "bar",
-      label: "Bar Dataset",
-      backgroundColor: "rgba(255, 99, 132, 0.2)",
-      borderColor: "rgba(255, 99, 132, 1)",
+      label: "Profit",
+      backgroundColor: "#273D6C",
+      borderColor: "#273D6C", // Set line color to green
+      barThickness: 60,
       borderWidth: 1,
-      data: [30, 40, 50, 60, 70],
+      data: [46, 43, 44, 45, 43],
       yAxisID: "y",
+      order: 2, // Bar chart has a lower order
     },
   ],
 };
 
 const chartOptions = {
   responsive: true,
-  backgroundColor: "#273D6C",
   color: "black",
   plugins: {
     legend: {
-      display: false, // Hides the legend
+      display: true,
+      position: "bottom",
+      labels: {
+        boxWidth: 10, // Adjust the size of the legend boxes
+        boxHeight: 10, // Optional: If you want to specify the height of the box
+        padding: 10,
+        // color: "gray",
+        font: {
+          size: 11.5, // Adjust the font size of the legend text
+          weight: "500",
+
+          // ... other font options
+        },
+        usePointStyle: true, // Set to true to use point style for boxes (makes them smaller)
+      },
     },
     datalabels: {
-      align: "center",
+      align: "end",
       anchor: "top",
       color: "white",
       textAlign: useI18n.locale == "ar" ? "right" : "left",
-
       font: {
-        weight: "600",
+        weight: "500",
         size: 15,
       },
     },
   },
+
   scales: {
     y: {
       type: "linear",
-      display: true,
+      suggestedMax: 61,
+      display: false,
       position: "left",
       beginAtZero: true,
     },
     y1: {
       type: "linear",
-      display: true,
+      display: false,
       position: "right",
-      // grid line settings
+      beginAtZero: true,
       grid: {
-        drawOnChartArea: false, // only want the grid lines for one axis to show up
+        drawOnChartArea: false,
       },
     },
     x: {
-      // display: false,
       stacked: true,
       grid: {
         display: false,
@@ -110,23 +140,11 @@ const chartOptions = {
       ticks: {
         color: "black",
         font: {
-          weight: "bold", // Make the Y-axis font bold
-          size: 15,
+          weight: "bold",
+          size: 14,
         },
       },
     },
-    yAxes: [
-      {
-        id: "y-axis-1", // First y-axis
-        type: "linear",
-        position: "left",
-      },
-      {
-        id: "y-axis-2", // Second y-axis
-        type: "linear",
-        position: "right",
-      },
-    ],
   },
 };
 

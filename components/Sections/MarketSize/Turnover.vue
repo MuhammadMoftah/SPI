@@ -9,7 +9,7 @@
         <ChartsBar chartClass="max-h-[380px] !h-80 mx-auto" />
       </div>
       <div class="">
-        <ChartsBar chartClass="max-h-[380px] !h-80 mx-auto" />
+        <ChartsBarCateg chartClass="max-h-[380px] !h-80 mx-auto" />
       </div>
       <div class="">
         <ChartsStackedBarLine chartClass="max-h-[380px] !h-80 mx-auto" />
