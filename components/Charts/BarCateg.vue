@@ -11,12 +11,6 @@
 </template>
 
 <script setup>
-const { market_size_1 } = inject("charts");
-
-// console.log(
-//   "data ",
-//   market_size_1.value.map((el) => el.label)
-// );
 import { Bar } from "vue-chartjs";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 
@@ -47,7 +41,7 @@ const chartData = {
   datasets: [
     {
       label: "BSB",
-      backgroundColor: "#273D6C ", // Set color for category 1
+      backgroundColor: "#273D6C", // Set color for category 1
       data: [76, 72, 68, 60, 66], // Replace with your data for category 1
     },
     {
@@ -69,7 +63,6 @@ const chartOptions = {
   plugins: {
     legend: {
       display: true,
-      // position: "bottom",
       labels: {
         boxWidth: 10,
         boxHeight: 10,
@@ -82,24 +75,34 @@ const chartOptions = {
       },
     },
     datalabels: {
+      color: "white",
       formatter: function (value, context) {
-        // Add "%" symbol after each data number
+        if (context.dataset.label === "Total") {
+          return value;
+        }
         return value + "%";
       },
-      align: "end",
       anchor: "center",
+      align: "center",
+
+      anchor: "end",
+      align: "start",
+      offset: -2,
       color: "white",
-      textAlign: useI18n.locale == "ar" ? "right" : "left",
-      font: {
-        weight: "500",
-        size: 13,
+      labels: {
+        title: {
+          font: {
+            weight: "600",
+            size: 13,
+          },
+        },
       },
     },
   },
   scales: {
     y: {
       type: "linear",
-      suggestedMax: 61,
+      suggestedMax: -1000,
       display: false,
       position: "left",
       beginAtZero: true,
@@ -113,7 +116,7 @@ const chartOptions = {
         color: "black",
         font: {
           weight: "bold",
-          size: 14,
+          size: 13,
         },
       },
     },

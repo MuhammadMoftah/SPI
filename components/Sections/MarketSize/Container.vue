@@ -11,7 +11,11 @@
       :activeTab="activeTab"
       @tabChosen="(e) => (activeTab = e)"
     />
-    <SectionsMarketSizeMS v-if="activeTab == $t('market_size')" />
+    <SectionsMarketSizeMS
+      :market_size_1="market_size_1"
+      :market_size_type="market_size_type"
+      v-if="activeTab == $t('market_size')"
+    />
     <SectionsMarketSizeTurnover
       v-if="activeTab == $t('turnover_cost_profitability')"
     />
@@ -28,7 +32,7 @@
 <script setup>
 const t = useI18n().t;
 
-const activeTab = ref(t("turnover_cost_profitability"));
+const activeTab = ref(t("market_size"));
 
 const activeText = computed(() => {
   if (activeTab.value == t("market_size")) {
@@ -41,34 +45,24 @@ const activeText = computed(() => {
     return t("companies_idea");
   }
 });
+let market_size_1 = ref(null);
+let market_size_type = ref(null);
 
-// onBeforeMount(async () => {
-//   const { data: market_size_1 } = await useChartsData()
-//     .getData("market_size_1")
-//     .catch((err) => {
-//       console.log(err);
-//     });
-//   const { data: market_size_type } = await useChartsData()
-//     .getData("market_size_type")
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// });
+useChartsData()
+  .getData("market_size_1")
+  .then((res) => {
+    market_size_1.value = res.data.value.data;
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
-// useChartsData()
-//   .getData("market_size_1")
-//   .then(() => {})
-//   .catch((err) => {
-//     console.log(err);
-//   });
-// useChartsData()
-//   .getData("market_size_type")
-//   .then(() => {})
-//   .catch((err) => {
-//     console.log(err);
-//   });
-
-// provide("charts", { data,market_size_1, market_size_type });
-provide("charts", {});
-// console.log("market_size_1 ", market_size_1, market_size_type);
+useChartsData()
+  .getData("market_size_type")
+  .then((res) => {
+    market_size_type.value = res.data.value.data;
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 </script>

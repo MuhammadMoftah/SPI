@@ -88,29 +88,32 @@ const chartOptions = {
   plugins: {
     legend: {
       display: true,
-      position: "bottom",
+      // position: "bottom",
       labels: {
-        boxWidth: 10, // Adjust the size of the legend boxes
-        boxHeight: 10, // Optional: If you want to specify the height of the box
+        boxWidth: 10,
+        boxHeight: 10,
         padding: 10,
-        // color: "gray",
         font: {
-          size: 11.5, // Adjust the font size of the legend text
+          size: 11.5,
           weight: "500",
-
-          // ... other font options
         },
-        usePointStyle: true, // Set to true to use point style for boxes (makes them smaller)
+        usePointStyle: true,
       },
     },
     datalabels: {
+      formatter: function (value, context) {
+        if (context.dataset.label === "Total") {
+          return value;
+        }
+        return value + "%";
+      },
       align: "end",
       anchor: "top",
       color: "white",
       textAlign: useI18n.locale == "ar" ? "right" : "left",
       font: {
-        weight: "500",
-        size: 15,
+        weight: "600",
+        size: 13,
       },
     },
   },
@@ -141,7 +144,7 @@ const chartOptions = {
         color: "black",
         font: {
           weight: "bold",
-          size: 14,
+          size: 13,
         },
       },
     },

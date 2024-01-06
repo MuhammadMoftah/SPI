@@ -30,19 +30,23 @@ Chart.register(
   ChartDataLabels
 );
 
-defineProps(["footerText", "chartClass"]);
+const props = defineProps(["chartData", "footerText", "chartClass"]);
 
-// Chart data
-const chartData = ref({
-  labels: ["Non-store", "Store-based"],
-  datasets: [
-    {
-      data: [6.1, 93.9],
-      backgroundColor: ["#457BEE", "#273D6C"],
-      borderWidth: 0,
-      spacing: 0,
-    },
-  ],
+const chartData = computed(() => {
+  if (props.chartData && Array.isArray(props.chartData)) {
+    return {
+      labels: props.chartData.map((el) => el.label),
+      datasets: [
+        {
+          data: props.chartData.map((el) => el.point_value),
+          backgroundColor: ["#457BEE", "#273D6C"],
+          borderWidth: 0,
+          spacing: 0,
+        },
+      ],
+    };
+  }
+  return { labels: [], datasets: [] };
 });
 
 // Chart options
@@ -61,7 +65,7 @@ const chartOptions = ref({
 
       font: {
         weight: "bold",
-        size: 16,
+        size: 13,
       },
     },
   },

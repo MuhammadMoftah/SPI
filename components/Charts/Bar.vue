@@ -1,6 +1,9 @@
 <template>
   <section class="grid">
+    <!-- dynamic =>> {{ data }} -->
+    <!-- dynamic =>> {{ chartData }} -->
     <Bar
+      v-if="chartData"
       ref="BarChart"
       :class="chartClass"
       :options="chartOptions"
@@ -11,12 +14,6 @@
 </template>
 
 <script setup>
-const { market_size_1 } = inject("charts");
-
-// console.log(
-//   "data ",
-//   market_size_1.value.map((el) => el.label)
-// );
 import { Bar } from "vue-chartjs";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 
@@ -40,18 +37,26 @@ ChartJS.register(
   ChartDataLabels
 );
 
-defineProps(["footerText", "chartClass"]);
+const props = defineProps({
+  footerText: {},
+  chartClass: {},
+  chartData: {},
+});
 
-const chartData = {
-  // labels: ["2019A", "2020A", "2021A", "2022A", "2024A", "2025A", "2026A"],
-  labels: ["2019A", "2020A", "2021A", "2022A", "2024A", "2025A", "2026A"],
-  datasets: [
-    {
-      // label: "Market Size",
-      data: [374.7, 372, 347.2, 376.5, 406.7, 435.3, 461.8, 489.6],
-    },
-  ],
-};
+const chartData = computed(() => {
+  if (props.chartData && Array.isArray(props.chartData)) {
+    return {
+      labels: props.chartData.map((el) => el.label),
+      datasets: [
+        {
+          data: props.chartData.map((el) => el.point_value),
+        },
+      ],
+    };
+  }
+  return { labels: [], datasets: [] };
+});
+
 const chartOptions = {
   responsive: true,
   backgroundColor: "#273D6C",
@@ -66,8 +71,8 @@ const chartOptions = {
       color: "white",
       textAlign: useI18n.locale == "ar" ? "right" : "left",
       font: {
-        weight: "500",
-        size: 15,
+        weight: "600",
+        size: 13,
       },
     },
   },
@@ -80,15 +85,14 @@ const chartOptions = {
       },
     },
     x: {
-      // display: false,
       grid: {
         display: false,
       },
       ticks: {
         color: "black",
         font: {
-          weight: "bold", // Make the Y-axis font bold
-          size: 15,
+          weight: "bold",
+          size: 13,
         },
       },
     },
