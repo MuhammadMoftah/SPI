@@ -12,32 +12,35 @@
 </template>
 
 <script setup>
-import { Bar, Line } from "vue-chartjs";
+import { Bar } from "vue-chartjs";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 
-import {
-  Chart,
-  Title,
-  Tooltip,
-  Legend,
-  BarElement,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-} from "chart.js";
+// import {
+//   Chart,
+//   Title,
+//   Tooltip,
+//   Legend,
+//   BarElement,
+//   CategoryScale,
+//   LinearScale,
+//   PointElement,
+//   LineElement,
+// } from "chart.js";
 
-Chart.register(
-  Title,
-  Tooltip,
-  Legend,
-  BarElement,
-  CategoryScale,
-  LinearScale,
-  ChartDataLabels,
-  PointElement,
-  LineElement
-);
+import { Chart, registerables } from "chart.js";
+
+Chart.register(...registerables, ChartDataLabels);
+// Chart.register(
+//   Title,
+//   Tooltip,
+//   Legend,
+//   BarElement,
+//   CategoryScale,
+//   LinearScale,
+//   ChartDataLabels,
+//   PointElement,
+//   LineElement
+// );
 
 defineProps(["footerText", "chartClass", "chartData", "chartOptions"]);
 
