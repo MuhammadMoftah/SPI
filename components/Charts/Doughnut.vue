@@ -13,7 +13,6 @@
 <script setup>
 import { Doughnut } from "vue-chartjs";
 import ChartDataLabels from "chartjs-plugin-datalabels";
-// Import necessary elements, controllers, and charts
 import {
   Chart,
   ArcElement,

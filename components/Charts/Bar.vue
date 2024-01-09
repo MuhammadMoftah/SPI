@@ -1,7 +1,5 @@
 <template>
   <section class="grid">
-    <!-- dynamic =>> {{ data }} -->
-    <!-- dynamic =>> {{ chartData }} -->
     <Bar
       v-if="chartData"
       ref="BarChart"
@@ -54,7 +52,10 @@ const chartData = computed(() => {
       ],
     };
   }
-  return { labels: [], datasets: [] };
+  return {
+    labels: [""],
+    datasets: [],
+  };
 });
 
 const chartOptions = {

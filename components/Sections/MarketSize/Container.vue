@@ -17,6 +17,9 @@
       v-if="activeTab == $t('market_size')"
     />
     <SectionsMarketSizeTurnover
+      :turnover="turnover"
+      :cost_structure="cost_structure"
+      :profitability="profitability"
       v-if="activeTab == $t('turnover_cost_profitability')"
     />
     <SectionsMarketSizeCompanies
@@ -47,22 +50,54 @@ const activeText = computed(() => {
 });
 let market_size_1 = ref(null);
 let market_size_type = ref(null);
+let turnover = ref(null);
+let cost_structure = ref(null);
+let profitability = ref(null);
 
-useChartsData()
+const marketSize = useChartsData()
   .getData("market_size_1")
   .then((res) => {
     market_size_1.value = res.data.value.data;
+    return res;
   })
   .catch((err) => {
     console.log(err);
+    return err;
   });
 
-useChartsData()
+const marcketType = useChartsData()
   .getData("market_size_type")
   .then((res) => {
     market_size_type.value = res.data.value.data;
+    return res;
   })
   .catch((err) => {
     console.log(err);
+    return err;
+  });
+
+Promise.all([marketSize, marcketType])
+  .then(() => {
+    useChartsData()
+      .getData("turnover")
+      .then((res) => {
+        turnover.value = res.data.value.data;
+        return res;
+      });
+    useChartsData()
+      .getData("cost_structure")
+      .then((res) => {
+        cost_structure.value = res.data.value.data;
+        return res;
+      });
+    useChartsData()
+      .getData("profitability")
+      .then((res) => {
+        profitability.value = res.data.value.data;
+        return res;
+      });
+  })
+  .catch((error) => {
+    console.error("Promise all:", error);
   });
 </script>

@@ -7,8 +7,11 @@
     <section class="grid items-end grid-cols-3 gap-y-4 xl:grid-cols-12">
       <div class="col-span-6">
         <ChartsBar
+          v-if="market_size_1"
           :chart-data="market_size_1"
-          footer-text="Market size (SAR bn), 2019A-26F"
+          :footer-text="`Market size (SAR bn), ${market_size_1[0]?.label} - ${
+            market_size_1[market_size_1.length - 1].label
+          }`"
           chartClass="max-h-[380px] !h-80  mx-auto"
         />
       </div>
