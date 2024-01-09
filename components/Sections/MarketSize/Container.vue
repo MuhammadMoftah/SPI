@@ -42,7 +42,7 @@
 <script setup>
 const t = useI18n().t;
 const loading = ref(false);
-const activeTab = ref(t("companies_employees_salaries"));
+const activeTab = ref(t("market_size"));
 
 const activeText = computed(() => {
   if (activeTab.value == t("market_size")) {
