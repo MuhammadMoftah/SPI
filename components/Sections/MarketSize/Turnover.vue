@@ -7,8 +7,9 @@
     <section class="grid items-end grid-cols-1 gap-8 gap-y-4 xl:grid-cols-3">
       <div class="">
         <ChartsBar
-          v-if="turnover"
-          :chart-data="turnover"
+          v-if="turnoverData"
+          :chart-data="turnoverData"
+          :chart-options="turnoverOptions"
           footerText="Turnover(b)(c) (SAR bn), 2017A-21A"
           chartClass="max-h-[380px]  mx-auto"
         />
@@ -38,20 +39,81 @@
 <script setup>
 const props = defineProps(["turnover", "cost_structure", "profitability"]);
 
+// Market
+const turnoverData = computed(() => {
+  if (props.turnover && Array.isArray(props.turnover)) {
+    return {
+      labels: props.turnover.map((el) => el.label),
+      datasets: [
+        {
+          data: props.turnover.map((el) => el.point_value),
+        },
+      ],
+    };
+  }
+  return {
+    labels: [""],
+    datasets: [],
+  };
+});
+
+const turnoverOptions = {
+  responsive: true,
+  backgroundColor: "#273D6C",
+  color: "black",
+  plugins: {
+    legend: {
+      display: false, // Hides the legend
+    },
+    datalabels: {
+      color: "white",
+      textAlign: useI18n.locale == "ar" ? "right" : "left",
+      font: {
+        weight: "600",
+        size: 13,
+      },
+    },
+  },
+  scales: {
+    y: {
+      beginAtZero: true, // default true,
+      display: false,
+      grid: {
+        display: false,
+      },
+    },
+    x: {
+      grid: {
+        display: false,
+      },
+      ticks: {
+        color: "black",
+        font: {
+          weight: "bold",
+          size: 13,
+        },
+      },
+    },
+  },
+};
+
 //Cost structure data
 const specificColors = ["#273D6C", "#4266B1", "#769FF5"];
-let redesignCostStructure = "";
-if (props.cost_structure.length) {
-  redesignCostStructure = {
-    labels: props.cost_structure[0].points.map((el) => el.label),
-    datasets: props.cost_structure.map((el, index) => ({
-      label: el.dataset,
-      data: el.points.map((el) => parseFloat(el.point_value)),
-      backgroundColor: specificColors[index],
-      borderWidth: 0,
-    })),
-  };
-}
+const redesignCostStructure = computed(() => {
+  if (props.cost_structure?.length) {
+    return {
+      labels: props.cost_structure[0].points.map((el) => el.label),
+      datasets: props.cost_structure.map((el, index) => ({
+        label: el.dataset,
+        data: el.points.map((el) => parseFloat(el.point_value)),
+        backgroundColor: specificColors[index],
+        borderWidth: 0,
+      })),
+    };
+  }
+  return false;
+});
+
 const costStructureOptions = {
   minBarLength: 12,
   responsive: true,

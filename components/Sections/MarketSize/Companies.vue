@@ -3,19 +3,271 @@
     <p class="mb-12 text-sm text-theme-indigo">
       {{ $t("companies_p") }}
     </p>
-
     <section class="grid items-end grid-cols-1 gap-8 gap-y-4 xl:grid-cols-3">
       <div class="">
-        <ChartsDoughnut chartClass="max-h-[380px] !h-80 mx-auto" />
+        <ChartsBarCateg
+          v-if="landscapeData"
+          :chart-data="landscapeData"
+          :chart-options="landscapeOptions"
+          footerText="No. of companies(b) (‘000) by employees, 2017A-21A"
+          chartClass="max-h-[380px] mx-auto"
+        />
       </div>
       <div class="">
-        <ChartsDoughnut chartClass="max-h-[380px] !h-80 mx-auto" />
+        <ChartsStackedBarLine
+          v-if="avgData"
+          :chart-data="avgData"
+          :chart-options="avgOption"
+          footerText="Profit(b)(e) (SAR bn) and profit margin (%), 2017A-21A"
+          chartClass="max-h-[380px]  mx-auto"
+        />
       </div>
       <div class="">
-        <ChartsDoughnut chartClass="max-h-[380px] !h-80 mx-auto" />
+        <ChartsDoughnut
+          v-if="doughnutData"
+          :chartData="doughnutData"
+          :chartOptions="doughnutOptions"
+          footerText="Competitive landscape, market share(d) of companies (%), 2021A"
+          chartClass="max-h-[380px] !h-60 mx-auto"
+        />
       </div>
     </section>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+const props = defineProps([
+  "competitive_landscape",
+  "no_employees_avg_salary",
+  "no_companies_employees",
+]);
+
+//landscape
+const specificColors = ["#273D6C", "#4266B1", "#769FF5"];
+const landscapeData = computed(() => {
+  if (props.no_companies_employees?.length) {
+    return {
+      labels: props.no_companies_employees[0].points.map((el) => el.label),
+      datasets: props.no_companies_employees.map((el, index) => ({
+        label: el.dataset,
+        data: el.points.map((el) => parseFloat(el.point_value)),
+        // backgroundColor: ["#273D6C"],
+        backgroundColor: specificColors[index],
+        borderWidth: 0,
+      })),
+    };
+  }
+  return false;
+});
+
+const landscapeOptions = {
+  minBarLength: 17,
+  responsive: true,
+  color: "black",
+  plugins: {
+    legend: {
+      display: true,
+      labels: {
+        padding: 10,
+        font: {
+          size: 12,
+          weight: "500",
+        },
+        usePointStyle: true,
+      },
+    },
+    datalabels: {
+      color: "white",
+      textAlign: useI18n.locale == "ar" ? "right" : "left",
+
+      labels: {
+        title: {
+          font: {
+            weight: "600",
+            size: 11,
+          },
+        },
+      },
+    },
+  },
+  scales: {
+    y: {
+      type: "linear",
+      stacked: true,
+      suggestedMax: 500,
+      display: false,
+      beginAtZero: true,
+    },
+    x: {
+      stacked: true,
+      grid: {
+        display: false,
+      },
+      ticks: {
+        color: "black",
+        font: {
+          weight: "bold",
+          size: 13,
+        },
+      },
+    },
+  },
+};
+
+//employees_avg_salary
+const avgData = computed(() => {
+  if (
+    props.no_employees_avg_salary &&
+    Array.isArray(props.no_employees_avg_salary)
+  ) {
+    return {
+      labels: props.no_employees_avg_salary[0].points.map((item) => item.label),
+      datasets: [
+        {
+          type: "bar",
+          label: props.no_employees_avg_salary[0].dataset,
+          backgroundColor: "#273D6C",
+          borderColor: "#273D6C",
+          barThickness: 60,
+          borderWidth: 1,
+          data: props.no_employees_avg_salary[0].points.map(
+            (item) => item.point_value
+          ),
+          yAxisID: "y",
+          order: 2,
+        },
+        {
+          type: "line",
+          label: props.no_employees_avg_salary[1].dataset,
+          borderWidth: 1,
+          pointRadius: 7,
+          pointStyle: "rect",
+          borderColor: "#6B4747",
+          backgroundColor: "#6B4747",
+          fill: false,
+          data: props.no_employees_avg_salary[1].points.map(
+            (item) => item.point_value
+          ),
+          yAxisID: "y1",
+          order: 2,
+          datalabels: {
+            color: "#6B4747",
+            anchor: "end",
+            align: "end",
+            offset: -2,
+            font: {
+              weight: "bold",
+              size: 13,
+            },
+          },
+        },
+      ],
+    };
+  }
+});
+
+const avgOption = {
+  responsive: true,
+  color: "black",
+  plugins: {
+    legend: {
+      display: true,
+      // position: "bottom",
+      labels: {
+        boxWidth: 10,
+        boxHeight: 10,
+        padding: 10,
+        font: {
+          size: 11.5,
+          weight: "500",
+        },
+        usePointStyle: true,
+      },
+    },
+    datalabels: {
+      align: "end",
+      anchor: "top",
+      color: "white",
+      textAlign: useI18n.locale == "ar" ? "right" : "left",
+      font: {
+        weight: "600",
+        size: 13,
+      },
+    },
+  },
+
+  scales: {
+    y: {
+      type: "linear",
+      suggestedMax: 600,
+      display: false,
+      position: "left",
+      beginAtZero: true,
+    },
+    y1: {
+      type: "linear",
+      suggestedMax: 40,
+      display: false,
+      position: "right",
+      beginAtZero: true,
+      grid: {
+        drawOnChartArea: false,
+      },
+    },
+    x: {
+      stacked: true,
+      grid: {
+        display: false,
+      },
+      ticks: {
+        color: "black",
+        font: {
+          weight: "bold",
+          size: 13,
+        },
+      },
+    },
+  },
+};
+
+const doughnutData = computed(() => {
+  if (
+    props.competitive_landscape &&
+    Array.isArray(props.competitive_landscape)
+  ) {
+    return {
+      labels: props.competitive_landscape.map((el) => el.label),
+      datasets: [
+        {
+          data: props.competitive_landscape.map((el) => el.point_value),
+          backgroundColor: ["#273D6C", "#457BEE"],
+          borderWidth: 0,
+          spacing: 0,
+        },
+      ],
+    };
+  }
+  return { labels: [], datasets: [] };
+});
+const doughnutOptions = ref({
+  cutout: "65%",
+  responsive: true,
+  plugins: {
+    legend: {
+      display: false,
+    },
+    datalabels: {
+      align: "center",
+      anchor: "top",
+      formatter: (value) => value + "%",
+      color: "white",
+      textAlign: useI18n.locale == "ar" ? "right" : "left",
+
+      font: {
+        weight: "bold",
+        size: 13,
+      },
+    },
+  },
+});
+</script>

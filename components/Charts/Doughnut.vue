@@ -29,44 +29,10 @@ Chart.register(
   ChartDataLabels
 );
 
-const props = defineProps(["chartData", "footerText", "chartClass"]);
-
-const chartData = computed(() => {
-  if (props.chartData && Array.isArray(props.chartData)) {
-    return {
-      labels: props.chartData.map((el) => el.label),
-      datasets: [
-        {
-          data: props.chartData.map((el) => el.point_value),
-          backgroundColor: ["#457BEE", "#273D6C"],
-          borderWidth: 0,
-          spacing: 0,
-        },
-      ],
-    };
-  }
-  return { labels: [], datasets: [] };
-});
-
-// Chart options
-const chartOptions = ref({
-  cutout: "65%",
-  responsive: true,
-  plugins: {
-    legend: {
-      display: false,
-    },
-    datalabels: {
-      align: "center",
-      anchor: "top",
-      color: "white",
-      textAlign: useI18n.locale == "ar" ? "right" : "left",
-
-      font: {
-        weight: "bold",
-        size: 13,
-      },
-    },
-  },
-});
+const props = defineProps([
+  "chartData",
+  "chartOptions",
+  "footerText",
+  "chartClass",
+]);
 </script>
