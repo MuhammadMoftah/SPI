@@ -4,7 +4,7 @@
       {{ $t("marcket_size_p") }}
     </p>
 
-    <section class="grid items-end grid-cols-3 gap-y-4 xl:grid-cols-12">
+    <section class="grid items-end grid-cols-1 gap-y-12 xl:grid-cols-12">
       <div class="col-span-6">
         <ChartsBar
           v-if="marketData"
@@ -13,17 +13,19 @@
           :footer-text="`Market size (SAR bn), ${market_size_1[0]?.label} - ${
             market_size_1[market_size_1.length - 1].label
           }`"
-          chartClass="max-h-[380px] !h-80 mx-auto"
+          chartClass="max-h-[380px] !h-72 mx-auto"
         />
       </div>
-      <div class="col-span-2"></div>
+      <div class="items-end justify-center hidden col-span-2 xl:flex">
+        <IconsHandPointer class="w-12 h-12" />
+      </div>
       <div class="col-span-4">
         <ChartsDoughnut
           v-if="doughnutData"
           :chart-data="doughnutData"
           :chart-options="doughnutOptions"
           footerText="Market size By type (%), 2021A"
-          chartClass="max-h-[380px] !h-72  mx-auto "
+          chartClass="max-h-[380px] !h-60  mx-auto "
         />
       </div>
     </section>
