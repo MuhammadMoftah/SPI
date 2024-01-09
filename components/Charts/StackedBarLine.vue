@@ -3,8 +3,8 @@
     <Bar
       ref="BarChart"
       :class="chartClass"
-      :options="chartOptions"
       :data="chartData"
+      :options="chartOptions"
     />
 
     <ChartsFooter :text="footerText" />
@@ -39,99 +39,9 @@ Chart.register(
   LineElement
 );
 
-defineProps(["footerText", "chartClass"]);
+defineProps(["footerText", "chartClass", "chartData", "chartOptions"]);
 
-const chartData = {
-  labels: ["2019A", "2020A", "2021A", "2022A", "2024A"],
-  datasets: [
-    {
-      type: "line",
-      // label: "Line Dataset",
-      // borderColor: "rgba(75, 192, 192, 1)",
-      // borderWidth: 2,
-      fill: false,
-      data: [0, 10, 5, 2, 20, 30, 45],
-      yAxisID: "y1",
-    },
-    {
-      type: "bar",
-      label: "Bar Dataset",
-      backgroundColor: "rgba(255, 99, 132, 0.2)",
-      borderColor: "rgba(255, 99, 132, 1)",
-      borderWidth: 1,
-      data: [30, 40, 50, 60, 70],
-      yAxisID: "y",
-    },
-  ],
-};
+// const chartData =
 
-const chartOptions = {
-  responsive: true,
-  backgroundColor: "#273D6C",
-  color: "black",
-  plugins: {
-    legend: {
-      display: false, // Hides the legend
-    },
-    datalabels: {
-      align: "center",
-      anchor: "top",
-      color: "white",
-      textAlign: useI18n.locale == "ar" ? "right" : "left",
-
-      font: {
-        weight: "600",
-        size: 15,
-      },
-    },
-  },
-  scales: {
-    y: {
-      type: "linear",
-      display: true,
-      position: "left",
-      beginAtZero: true,
-    },
-    y1: {
-      type: "linear",
-      display: true,
-      position: "right",
-      // grid line settings
-      grid: {
-        drawOnChartArea: false, // only want the grid lines for one axis to show up
-      },
-    },
-    x: {
-      // display: false,
-      stacked: true,
-      grid: {
-        display: false,
-      },
-      ticks: {
-        color: "black",
-        font: {
-          weight: "bold", // Make the Y-axis font bold
-          size: 15,
-        },
-      },
-    },
-    yAxes: [
-      {
-        id: "y-axis-1", // First y-axis
-        type: "linear",
-        position: "left",
-      },
-      {
-        id: "y-axis-2", // Second y-axis
-        type: "linear",
-        position: "right",
-      },
-    ],
-  },
-};
-
-onMounted(() => {
-  // console.log("ref", ctx.value);
-  // ctx.value.innerHTML = "test";
-});
+// const chartOptions =
 </script>

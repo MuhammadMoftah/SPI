@@ -1,7 +1,6 @@
 <template>
   <section class="grid">
     <Bar
-      v-if="chartData"
       ref="BarChart"
       :class="chartClass"
       :options="chartOptions"
@@ -35,10 +34,5 @@ ChartJS.register(
   ChartDataLabels
 );
 
-const props = defineProps({
-  footerText: {},
-  chartClass: {},
-  chartData: {},
-  chartOptions: {},
-});
+defineProps(["footerText", "chartClass", "chartData", "chartOptions"]);
 </script>

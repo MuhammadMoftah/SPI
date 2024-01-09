@@ -1,5 +1,5 @@
 <template>
-  <aside class="h-screen bg-theme-indigo">
+  <aside class="w-auto h-screen overflow-x-auto bg-theme-indigo">
     <figure class="grid h-20 place-content-center">
       <img src="@/static/logo.png" class="w-32" alt="" />
     </figure>

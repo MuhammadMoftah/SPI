@@ -11,13 +11,27 @@
       :activeTab="activeTab"
       @tabChosen="(e) => (activeTab = e)"
     />
-    <SectionsMarketSizeMS v-if="activeTab == $t('market_size')" />
-    <SectionsMarketSizeTurnover
-      v-if="activeTab == $t('turnover_cost_profitability')"
-    />
-    <SectionsMarketSizeCompanies
-      v-if="activeTab == $t('companies_employees_salaries')"
-    />
+
+    <section class="min-h-[250px] relative">
+      <SectionsMarketSizeMS
+        :market_size_1="market_size_1"
+        :market_size_type="market_size_type"
+        v-if="activeTab == $t('market_size') && market_size_1"
+      />
+      <SectionsMarketSizeTurnover
+        :turnover="turnover"
+        :cost_structure="cost_structure"
+        :profitability="profitability"
+        v-if="activeTab == $t('turnover_cost_profitability')"
+      />
+      <SectionsMarketSizeCompanies
+        :no_companies_employees="no_companies_employees"
+        :no_employees_avg_salary="no_employees_avg_salary"
+        :competitive_landscape="competitive_landscape"
+        v-if="activeTab == $t('companies_employees_salaries')"
+      />
+      <ThemeLoading v-if="loading" />
+    </section>
     <ThemeLowerIdea
       class="absolute xl:-bottom-36 -bottom-56"
       :text="activeText"
@@ -27,8 +41,8 @@
 
 <script setup>
 const t = useI18n().t;
-
-const activeTab = ref(t("turnover_cost_profitability"));
+const loading = ref(false);
+const activeTab = ref(t("companies_employees_salaries"));
 
 const activeText = computed(() => {
   if (activeTab.value == t("market_size")) {
@@ -41,34 +55,97 @@ const activeText = computed(() => {
     return t("companies_idea");
   }
 });
+let market_size_1 = ref(null);
+let market_size_type = ref(null);
+let turnover = ref(null);
+let cost_structure = ref(null);
+let profitability = ref(null);
+let no_companies_employees = ref(null);
+let no_employees_avg_salary = ref(null);
+let competitive_landscape = ref(null);
 
-// onBeforeMount(async () => {
-//   const { data: market_size_1 } = await useChartsData()
-//     .getData("market_size_1")
-//     .catch((err) => {
-//       console.log(err);
-//     });
-//   const { data: market_size_type } = await useChartsData()
-//     .getData("market_size_type")
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// });
+const marketSize = useChartsData()
+  .getData("market_size_1")
+  .then((res) => {
+    market_size_1.value = res.data.value.data;
+    return res;
+  })
+  .catch((err) => {
+    console.log(err);
+    return err;
+  });
 
-// useChartsData()
-//   .getData("market_size_1")
-//   .then(() => {})
-//   .catch((err) => {
-//     console.log(err);
-//   });
-// useChartsData()
-//   .getData("market_size_type")
-//   .then(() => {})
-//   .catch((err) => {
-//     console.log(err);
-//   });
+const marcketType = useChartsData()
+  .getData("market_size_type")
+  .then((res) => {
+    market_size_type.value = res.data.value.data;
+    return res;
+  })
+  .catch((err) => {
+    console.log(err);
+    return err;
+  });
 
-// provide("charts", { data,market_size_1, market_size_type });
-provide("charts", {});
-// console.log("market_size_1 ", market_size_1, market_size_type);
+Promise.all([marketSize, marcketType])
+  .then(() => {
+    useChartsData()
+      .getData("turnover")
+      .then((res) => {
+        turnover.value = res.data.value.data;
+        return res;
+      })
+      .catch((err) => {
+        return err;
+      });
+    useChartsData()
+      .getData("cost_structure")
+      .then((res) => {
+        cost_structure.value = res.data.value.data;
+        return res;
+      })
+      .catch((err) => {
+        return err;
+      });
+    useChartsData()
+      .getData("profitability")
+      .then((res) => {
+        profitability.value = res.data.value.data;
+        return res;
+      })
+      .catch((err) => {
+        return err;
+      });
+    useChartsData()
+      .getData("no_companies_employees")
+      .then((res) => {
+        no_companies_employees.value = res.data.value.data;
+        return res;
+      })
+      .catch((err) => {
+        return err;
+      });
+    useChartsData()
+      .getData("no_employees_avg_salary")
+      .then((res) => {
+        no_employees_avg_salary.value = res.data.value.data;
+        return res;
+      })
+      .catch((err) => {
+        return err;
+      });
+
+    useChartsData()
+      .getData("competitive_landscape")
+      .then((res) => {
+        competitive_landscape.value = res.data.value.data;
+        return res;
+      })
+      .catch((err) => {
+        return err;
+      });
+  })
+  .catch((error) => {
+    console.error("Promise all:", error);
+    loading.value = true;
+  });
 </script>

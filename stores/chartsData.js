@@ -15,6 +15,7 @@ export const useChartsData = defineStore("useChartsData", {
         console.log(err);
       });
       this[slug] = data;
+      console.log("this", this.state);
       this.loading = false;
       return { data, pending, error, refresh };
     },
