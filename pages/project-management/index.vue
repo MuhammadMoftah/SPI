@@ -1,3 +1,5 @@
 <template>
-  <section>{{ $route.name }} Page</section>
+  <section>
+    <ThemeCommingSoon class="h-[calc(100vh_-_260px)]" />
+  </section>
 </template>
