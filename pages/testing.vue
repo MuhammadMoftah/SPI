@@ -11,5 +11,3 @@
     <Testing />
   </main>
 </template>
-
-<script setup></script>

@@ -17,7 +17,7 @@
         />
       </div>
       <div class="items-end justify-center hidden col-span-2 xl:flex">
-        <IconsHandPointer class="w-12 h-12" />
+        <IconsHandPointer class="w-12 h-12 rtl:-scale-y-100 rtl:rotate-180" />
       </div>
       <div class="col-span-4">
         <ChartsDoughnut
